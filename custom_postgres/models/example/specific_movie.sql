@@ -1,4 +1,6 @@
--- models/example/film_actors.sql
+{% set film_title = 'Inception' %}
+
+-- models/example/specific_movie.sql
 
 -- Configuration for the model
 {{
@@ -9,7 +11,7 @@
 
 -- Define the CTE (Common Table Expression) to pull data from the source
 WITH source_data AS (
-    SELECT * FROM {{ source('destination_db', 'film_actors') }}
+    SELECT * FROM {{ source('destination_db', 'films') }} WHERE title = '{{ film_title }}'
 )
 
 -- Select statement to define the columns and transformations
